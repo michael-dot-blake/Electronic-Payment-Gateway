@@ -1,5 +1,5 @@
 # Secure E-Commerce Group Assignment
 ### Group Members:
-s3840848 - Aaron Cartledge
-s3622180 - Michael Blakebrough
-s3508768 - Patrick La
+1. s3840848 - Aaron Cartledge
+2. s3622180 - Michael Blakebrough
+3. s3508768 - Patrick La
