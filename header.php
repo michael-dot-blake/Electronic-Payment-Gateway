@@ -31,57 +31,18 @@
     <nav class="navbar navbar-expand-sm bg-info navbar-dark">
         <ul class="navbar-nav big-font mr-auto mx-5 pl-5">
             <li class="nav-item pr-5">
-                <a class="nav-link text-light bg-info" href="#">Logo</a>
+                <a class="nav-link text-light bg-info" href="index.php">SEC 2021</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light bg-info" href="#">Home</a>
+                <a class="nav-link text-light bg-info" href="index.php">Home</a>
             </li>
         </ul>
         <ul class="navbar-nav big-font">
             <li class="nav-item">
-                <a class="nav-link text-light bg-info" href="#">Register</a>
+                <a class="nav-link text-light bg-info" href="register_form.php">Register</a>
             </li>
             <li class="nav-item mx-5 pr-5">
-                <a class="nav-link text-light bg-info" href="#">Log In</a>
+                <a class="nav-link text-light bg-info" href="login_form.php">Log In</a>
             </li>
         </ul>
     </nav>
-
-    
-    <section class="Form">
-        <div class="container-fluid">
-            <div class="row justify-content-center g-0">
-                <div class="col-lg-7">
-                    <h1>SEC Login Page</h1>
-                    <h3>Please login or register below</h3>
-                    <form>
-                        <div class="form-row">
-                        <div class="col-lg-7">
-                            <input type="email" placeholder="e-mail address" class="form-control my-3 p-4" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-lg-7">
-                            <input type="password" placeholder="password" class="form-control my-3 p-4" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-lg-7">
-                            <button class="mybtn mt-3 mb-5" type="submit">Login</button>
-                        </div>
-                    </div>
-                    <a href="#">Register Here!</a>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-   
-
-
-</body>
-
-</html>
