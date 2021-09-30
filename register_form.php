@@ -11,17 +11,17 @@
                     <form action="register_action.php" method="post">
                     <div class="form-row">
                         <div class="col-lg-7">
-                            <input type="text" placeholder="Enter Username" name="username" class="form-control my-3 p-4" required>
+                            <input type="text" placeholder="Enter Username" name="username" class="form-control my-3 p-4">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-lg-7">
-                            <input type="password" placeholder="Enter Password" name="pwd" class="form-control my-3 p-4" required>
+                            <input type="password" placeholder="Enter Password" name="password" class="form-control my-3 p-4">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-lg-7">
-                            <input type="password" placeholder="Repeat Password" name="pwdRepeat" class="form-control my-3 p-4" required>
+                            <input type="password" placeholder="Repeat Password" name="passwordRepeat" class="form-control my-3 p-4">
                         </div>
                     </div>
                     

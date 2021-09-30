@@ -1,11 +1,11 @@
 <?php
-include_once("config.php");
+session_start();
 ?>
 
 <html>
 <body>
 
-Your email address is: <?php echo $_POST["email"]; ?>
+Hello <?php echo $_SESSION['username']; ?>
 
 </body>
 </html>
