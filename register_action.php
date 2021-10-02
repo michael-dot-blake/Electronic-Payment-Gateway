@@ -1,28 +1,28 @@
 <?php
 
-echo $_POST['username'];
-echo $_POST['password'];
-echo $_POST['passwordRepeat'];
-
-
-if(isset($_POST['username']) == FALSE){
-	header('Location: register_form.php');
-    exit();
-}
-if(isset($_POST['password']) == FALSE){
+if(empty($_POST['username'])){
     header('Location: register_form.php');
     exit();
+    //echo "Username not passed";
 }
+if(empty($_POST['password'])){
+    header('Location: register_form.php');
+    exit();
+    //echo "password not passed";
+}
+
 if($_POST['password'] != $_POST['passwordRepeat']){
     header('Location: register_form.php');
     exit();
 }
 
 else if (isset($_POST["reg_submit"])) {
-    $entered_username = $_POST["username"];
-    $entered_pwd = $_POST["password"];
 
-    if($entered_username!="" & $entered_pwd != ""){
+    
+    $entered_username = $_POST['username'];
+    $entered_pwd = $_POST['password'];
+    $hashed_pwd = password_hash($entered_pwd, PASSWORD_DEFAULT);
+
 		$register = 0;
 		//read users.txt line by line
 		foreach(file('database/users.txt') as $line) {
@@ -42,15 +42,17 @@ else if (isset($_POST["reg_submit"])) {
         //open a file named "text.txt"
         $file = fopen("database/users.txt","a");
         //insert this user into the users.txt file
-        fwrite($file,$entered_username.",".$entered_pwd."\n");
+        fwrite($file,$entered_username.",".$hashed_pwd."\n");
         //close the "$file"
         fclose($file);
         echo "The user has been added to the database/users.txt";
     }
 
 
-    }
+    
 }
 else {
     header("location: register_form.php");
+   
+    
 }

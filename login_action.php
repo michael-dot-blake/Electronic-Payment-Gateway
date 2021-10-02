@@ -2,6 +2,8 @@
 
 session_start();
 
+	$userList = file ('database/users.txt');
+
 	if(empty($_POST['username'])){
 		header('Location: login_form.php');
 		//echo "Username not passed";
@@ -13,19 +15,21 @@ session_start();
 	
 	$entered_username = $_POST['username'];
 	$entered_password = $_POST['password'];
+	$hash = password_hash($entered_password, PASSWORD_DEFAULT);
 
 	if($entered_username != "" & $entered_password != ""){
 		$login = 0;
 		//read users.txt line by line
-		foreach(file('database/users.txt') as $line) {
+		foreach($userList as $line) {
 			//split each line as two parts
 			list($username, $password) = explode(",",$line);
 			//verify if an exist user with the same username
-			if($username == $entered_username){
+			if($entered_username == $username){
 				//verify the password
-				if($password == $entered_password."\n"){
-					$login = 1;
-					break;
+				if(password_verify($entered_password, $hash)) {
+				// echo "password matches";
+				$login = 1;
+				break;
 				}
 			}
 		}
@@ -35,5 +39,5 @@ session_start();
 		}else{
 			$_SESSION['username'] = $username;
             header('Location: welcome.php');
-		}
+		} 
 	}
