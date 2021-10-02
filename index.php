@@ -25,9 +25,9 @@
     require_once("includes/header.php");
     ?>
 
-    <div class="container">
-        <h2>Home Page</h2>
-        <p>hello</p>
+    <div class="container my-4">
+        <h2>Group Members:</h2>
+        <p>s3840848 - Aaron Cartledge<br>s3622180 - Michael Blakebrough<br>s3508768 - Patrick La</p>
     </div>
     <?php require_once("includes/footer.php"); ?>
 </body>
