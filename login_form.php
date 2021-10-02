@@ -37,12 +37,12 @@
                     <form action="login_action.php" method="post">
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="text" placeholder="Enter Username" name="username" class="form-control my-3 p-4">
+                                <input type="text" placeholder="Enter Username" name="username" class="form-control my-3 p-4" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="password" placeholder="Password" name="password" class="form-control my-3 p-4">
+                                <input type="password" placeholder="Password" name="password" class="form-control my-3 p-4" required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -50,7 +50,7 @@
                                 <button class="mybtn" type="submit">Login</button>
                             </div>
                         </div>
-                        Don't have an account?<a href="register_form.php"> Register Here!</a>
+                        <p>Don't have an account?<a href="register_form.php"> Register Here!</a></p>
                 </div>
             </div>
             </form>
