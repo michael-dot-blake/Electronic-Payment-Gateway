@@ -6,10 +6,12 @@ session_start();
 
 	if(empty($_POST['username'])){
 		header('Location: login_form.php');
+		exit();
 		//echo "Username not passed";
 	}
 	if(empty($_POST['password'])){
 		header('Location: login_form.php');
+		exit();
 		//echo "password not passed";
 	}
 	
