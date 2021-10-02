@@ -15,19 +15,18 @@ session_start();
 	
 	$entered_username = $_POST['username'];
 	$entered_password = $_POST['password'];
-	$hash = password_hash($entered_password, PASSWORD_DEFAULT);
 
 	if($entered_username != "" & $entered_password != ""){
 		$login = 0;
 		//read users.txt line by line
 		foreach($userList as $line) {
 			//split each line as two parts
-			list($username, $password) = explode(",",$line);
+			$credentials = explode(',', $line);
 			//verify if an exist user with the same username
-			if($entered_username == $username){
+			if(trim($credentials[0]) == $entered_username){
 				//verify the password
-				if(password_verify($entered_password, $hash)) {
-				// echo "password matches";
+				if(password_verify($entered_password, trim($credentials[1]))) {
+				$_SESSION['username'] = $entered_username;
 				$login = 1;
 				break;
 				}
@@ -37,7 +36,6 @@ session_start();
 		if($login == 0){
             header('Location: login_form.php');
 		}else{
-			$_SESSION['username'] = $username;
             header('Location: welcome.php');
 		} 
 	}
