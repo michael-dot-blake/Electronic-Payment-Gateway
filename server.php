@@ -17,41 +17,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <title>Register Form</title>
+    <title>Server Response</title>
 </head>
 <body>
 
 <?php
 session_start();
 include('rsa.php');
+include('des.php');
 ?>
 
 
 <h1>RSA exchange</h1>
 <?php
 
-$ciphertext = $_POST["userInput"];
-
-echo("<p>Ciphertext: " . $ciphertext . "</p>");
+$ciphertext = $_POST["seshKey"];
+echo("<p>Encrypted Session Key: " . $ciphertext . "</p>");
 
 // Get the private Key
 $privateKey = get_rsa_privatekey('private.key');
 
-// compute the decrypted value
-$decrypted = rsa_decryption($ciphertext, $privateKey);
+// compute the decrypted value, this is our session key
+$seshKey = rsa_decryption($ciphertext, $privateKey);
 
-echo("<p>Decrypted text: " . $decrypted . "</p>");
+echo("<p>Key with RSA encryption removed: " . $seshKey . "</p>");
 
-// // Your task: append the Decrypted text in the database.txt
-
-$plaintext = "server response";
-
-// Get the public Key
-$publicKey = get_rsa_publickey('public.key');
-
-// compute the ciphertext
-$encrypted = rsa_encryption($plaintext, $publicKey);
-echo $encrypted."<br/><br/><br/>";
+$message = "Session key received";
+$encrypted = php_des_encryption($seshKey, $message);
 
 ?>
 

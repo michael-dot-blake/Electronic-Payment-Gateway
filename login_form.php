@@ -24,8 +24,6 @@
     <?php
     require_once("includes/header.php");
 
-    session_start();
-
     ?>
 
     <section class="Form mb-5 pb-4">
