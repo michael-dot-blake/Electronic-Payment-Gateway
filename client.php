@@ -32,6 +32,7 @@ include('des.php');
         $ciphertext = $_POST['response'];
         echo("<p>Encrypted text: " . $ciphertext . "</p>");
         $decrypt = php_des_decryption($seshKey, $ciphertext);
+        echo("<p>Session Key is: " . $seshKey . "</p>");
         echo("<p>Decrypted text: " . $decrypt . "</p>");
     }
     ?>
