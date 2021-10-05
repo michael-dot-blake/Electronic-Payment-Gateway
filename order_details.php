@@ -76,38 +76,34 @@
     ?>
     <div class="container mt-4">
         <h1>Customer Order Form</h1>
-        <table>
-            <tr>
-                <th>Products</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-            </tr>
-            <tr>
-                <td><?php echo $_POST["ProductA"]; ?></td>
-                <td><?php echo $_POST["ProductAprice"]; ?></td>
-                <td><?php echo $_POST["ProductAquantity"]; ?></td>
-                <td><?php echo $_POST["ProductAtotal"]; ?></td>
-            </tr>
-            <tr>
-                <td><?php echo $_POST["ProductB"]; ?></td>
-                <td><?php echo $_POST["ProductBprice"]; ?></td>
-                <td><?php echo $_POST["ProductBquantity"]; ?></td>
-                <td><?php echo $_POST["ProductBtotal"]; ?></td>
-            </tr>
-            <tr>
-                <td><?php echo $_POST["ProductC"]; ?></td>
-                <td><?php echo $_POST["ProductCprice"]; ?></td>
-                <td><?php echo $_POST["ProductCquantity"]; ?></td>
-                <td><?php echo $_POST["ProductCtotal"]; ?></td>
-            </tr>
-            <tr>
-                <th></th>
-                <th>Total</th>
-                <th><?php echo $_POST["totalQuantity"]; ?></th>
-                <th><?php echo $_POST["totalPrice"]; ?></th>
-            </tr>
-        </table>
+         <table>  
+                <tr>    
+                    <th>Products</th>    
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    </tr>  <tr>    
+                    <td><?php if(!empty($_POST['ProductA'])) {  echo $_POST["ProductA"]; } ?></td>
+                    <td><?php if(!empty($_POST['ProductAprice'])) {echo $_POST["ProductAprice"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductAquantity'])) {echo $_POST["ProductAquantity"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductAtotal'])) {echo $_POST["ProductAtotal"]; }?></td>  
+                    </tr>  <tr>    
+                    <td><?php if(!empty($_POST['ProductB'])) {  echo $_POST["ProductB"]; } ?></td>
+                    <td><?php if(!empty($_POST['ProductBprice'])) {echo $_POST["ProductBprice"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductBquantity'])) {echo $_POST["ProductBquantity"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductBtotal'])) {echo $_POST["ProductBtotal"]; }?></td>  
+                    </tr>  <tr>
+                    <td><?php if(!empty($_POST['ProductC'])) {  echo $_POST["ProductC"]; } ?></td>
+                    <td><?php if(!empty($_POST['ProductCprice'])) {echo $_POST["ProductCprice"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductCquantity'])) {echo $_POST["ProductCquantity"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductCtotal'])) {echo $_POST["ProductCtotal"]; }?></td>  
+                    </tr>  <tr>
+                    <th></th>    
+                    <th>Total</th>
+                    <th><?php if (!empty($_POST["totalQuantity"])) { echo $_POST["totalQuantity"]; }?></th>
+                    <th><?php if (!empty($_POST["totalPrice"])) { echo $_POST["totalPrice"]; }?></th>  
+                </tr>
+            </table>
     </div>
 
 
