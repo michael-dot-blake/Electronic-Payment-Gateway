@@ -28,6 +28,7 @@
     require_once("database/DBContrl.php");
     $db_new = new DBController();
     ?>
+    <?php require_once("includes/footer.php"); ?>
 </body>
 
 
