@@ -35,14 +35,27 @@
 
     <?php
     require_once("includes/header.php");
+    include('rsa.php');
     ?>
 
 
     <?php
-    
+
     $ccNumber = $_POST['ccNumber'];
     $quantity = $_POST['totalQuantity'];
     $price = $_POST['totalPrice'];
+
+
+
+        //OpenSSL not accepting the public.key provided as a viable candidate for php encryption
+
+    // $publicKey = get_rsa_publickey('public.key');
+
+    // $cc_crypt = rsa_encryption($ccNumber, $publicKey);
+    // $quantity_crypt = rsa_encryption($quantity, $publicKey);
+    // $price_crypt = rsa_encryption($price, $publicKey);
+    
+
 
         $file = fopen("database/orders.txt", "a");
         //insert this user into the orders.txt file
