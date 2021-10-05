@@ -39,6 +39,6 @@ if ($entered_username != "" & $entered_password != "") {
 		echo "Your username or password was incorrect!<br />";
 		echo '<a href="login_form.php">Click here</a> to try again.';
 	} else {
-		header('Location: shopping_cart.php');
+		header('Location: home.php');
 	}
 }

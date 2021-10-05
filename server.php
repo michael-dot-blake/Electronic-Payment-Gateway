@@ -19,43 +19,54 @@
 
     <title>Server Response</title>
 </head>
+
 <body>
 
-<?php
-include('rsa.php');
-include('des.php');
-?>
+    <?php
+    include('rsa.php');
+    include('des.php');
+    require_once('includes/header.php');
+    ?>
 
+    <div class="container mt-3">
+        <h1>RSA exchange</h1>
+        <?php
 
-<h1>RSA exchange</h1>
-<?php
+        $ciphertext = $_POST["seshKey"];
+        echo ("<p>Encrypted Session Key: " . $ciphertext . "</p>");
 
-$ciphertext = $_POST["seshKey"];
-echo("<p>Encrypted Session Key: " . $ciphertext . "</p>");
+        // Get the private Key
+        $privateKey = get_rsa_privatekey('private.key');
 
-// Get the private Key
-$privateKey = get_rsa_privatekey('private.key');
+        // compute the decrypted value, this is our session key
+        $seshKey = rsa_decryption($ciphertext, $privateKey);
 
-// compute the decrypted value, this is our session key
-$seshKey = rsa_decryption($ciphertext, $privateKey);
+        echo ("<p>Key with RSA encryption removed: " . $seshKey . "</p>");
 
-echo("<p>Key with RSA encryption removed: " . $seshKey . "</p>");
+        $message = "Session key received";
+        $encrypted = php_des_encryption($seshKey, $message);
 
-$message = "Session key received";
-$encrypted = php_des_encryption($seshKey, $message);
+        ?>
+    </div>
 
-?>
-
-<section class="Form mb-5">
+    <section class="Form mb-5">
         <div class="container-fluid">
             <div class="row justify-content-center g-0">
                 <div class="col-lg-7 mt-4">
                     <form action="client.php" method="post">
-                    <div class="form-row">
+                        <div class="form-row">
                             <div class="col-lg-7">
-                                <button class="mybtn mt-3 mb-4" type="submit" name="response" value="<?php echo $encrypted?>">Reply</button>
+                                <button class="mybtn mt-3 mb-4" type="submit" name="response" value="<?php echo $encrypted ?>">Reply</button>
                             </div>
                         </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php
+    require_once('includes/footer.php');
+    ?>
 
 </body>
+
 </html>

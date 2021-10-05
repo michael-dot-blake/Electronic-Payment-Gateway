@@ -36,7 +36,7 @@
 <body>
 
     <?php
-    require_once("includes/header.php");
+    require_once("includes/header2.php");
     ?>
 
     <section class="Form mb-5">

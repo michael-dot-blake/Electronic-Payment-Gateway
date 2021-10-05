@@ -22,19 +22,26 @@
 
 <body>
 
-<?php
+    <?php
     require_once("includes/header.php");
-?>
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header('Location: login_form.php');
+    }
+    ?>
 
+    <div class="container mt-3">
+        <h1>
+            <?php
+            echo 'Welcome ' . $_SESSION['username'] . '!';
+            ?>
+        </h1>
+        <p>To get started, checkout the Shopping Cart Page in the navigation bar.</p>
+    </div>
 
-
-
-
-
-
-<?php
+    <?php
     require_once("includes/footer.php");
-?>
+    ?>
 
 </body>
 

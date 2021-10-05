@@ -22,7 +22,7 @@
 
 <body>
     <?php
-    require_once("includes/header.php");
+    require_once("includes/header2.php");
     session_start();
     if (isset($_SESSION['username'])) {
         header('Location: home.php');

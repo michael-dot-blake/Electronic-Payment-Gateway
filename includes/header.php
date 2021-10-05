@@ -4,16 +4,10 @@
             <a class="nav-link text-light bg-info">Payment Gateway</a>
         </li>
         <li class="nav-item pr-4">
-            <a class="nav-link text-light bg-info" href="index.php">Home</a>
+            <a class="nav-link text-light bg-info" href="home.php">Home</a>
         </li>
     </ul>
     <ul class="navbar-nav big-font">
-        <li class="nav-item">
-            <a class="nav-link text-light bg-info" href="register_form.php">Register</a>
-        </li>
-        <li class="nav-item mx-4 pr-4">
-            <a class="nav-link text-light bg-info" href="login_form.php">Log In</a>
-        </li>
         <li class="nav-item mx-4 pr-4">
             <a class="nav-link text-light bg-info" href="client.php">Generate Session Key</a>
         </li>
