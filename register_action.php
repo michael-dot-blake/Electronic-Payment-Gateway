@@ -37,7 +37,8 @@ else if (isset($_POST["reg_submit"])) {
     }
 
     if($register == 1){
-        echo "User already exists!";
+        echo "That username is already taken<br />";
+        echo '<a href="register_form.php">Go back</a>';
     }else{
         //open a file named "text.txt"
         $file = fopen("database/users.txt","a");
@@ -45,14 +46,10 @@ else if (isset($_POST["reg_submit"])) {
         fwrite($file,$entered_username.",".$hashed_pwd."\n");
         //close the "$file"
         fclose($file);
-        echo "The user has been added to the database/users.txt";
+        echo 'Congratulations, you can now <a href="login_form.php">Log In</a> here';
     }
-
-
     
 }
 else {
     header("location: register_form.php");
-   
-    
 }
