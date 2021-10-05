@@ -59,7 +59,7 @@
 
         $file = fopen("database/orders.txt", "a");
         //insert this user into the orders.txt file
-        fwrite($file, $cc_crypt . "," . $quantity_crypt . "," . $price_crypt ."\n");
+        fwrite($file, $ccNumber . "," . $quantity . "," . $price ."\n");
         //close the "$file"
         fclose($file);
     
