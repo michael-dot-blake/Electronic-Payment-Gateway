@@ -37,6 +37,23 @@
     require_once("includes/header.php");
     ?>
 
+
+    <?php
+    
+    $ccNumber = $_POST['ccNumber'];
+    $quantity = $_POST['totalQuantity'];
+    $price = $_POST['totalPrice'];
+
+        $file = fopen("database/orders.txt", "a");
+        //insert this user into the orders.txt file
+        fwrite($file, $ccNumber . "," . $quantity . "," . $price ."\n");
+        //close the "$file"
+        fclose($file);
+    
+
+
+    ?>
+
             <h1>Customer Order Form</h1>
             <table>  
                 <tr>    
