@@ -38,6 +38,6 @@ session_start();
 		if($login == 0){
             header('Location: login_form.php');
 		}else{
-            header('Location: welcome.php');
+            header('Location: shopping_cart.php');
 		} 
 	}
