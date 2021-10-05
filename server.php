@@ -22,7 +22,6 @@
 <body>
 
 <?php
-session_start();
 include('rsa.php');
 include('des.php');
 ?>
