@@ -17,47 +17,46 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <title>Login Page</title>
+    <title>Server Response</title>
 </head>
-
 <body>
-    <?php
-    require_once("includes/header.php");
 
-    ?>
+<?php
+session_start();
+include('rsa.php');
+include('des.php');
+?>
 
-    <section class="Form mb-5 pb-4">
+
+<h1>RSA exchange</h1>
+<?php
+
+$ciphertext = $_POST["seshKey"];
+echo("<p>Encrypted Session Key: " . $ciphertext . "</p>");
+
+// Get the private Key
+$privateKey = get_rsa_privatekey('private.key');
+
+// compute the decrypted value, this is our session key
+$seshKey = rsa_decryption($ciphertext, $privateKey);
+
+echo("<p>Key with RSA encryption removed: " . $seshKey . "</p>");
+
+$message = "Session key received";
+$encrypted = php_des_encryption($seshKey, $message);
+
+?>
+
+<section class="Form mb-5">
         <div class="container-fluid">
             <div class="row justify-content-center g-0">
                 <div class="col-lg-7 mt-4">
-                    <h1>SEC Login Page</h1><br>
-                    <h3>Please Login down below</h3>
-                    <form action="login_action.php" method="post">
-                        <div class="form-row">
+                    <form action="client.php" method="post">
+                    <div class="form-row">
                             <div class="col-lg-7">
-                                <input type="text" placeholder="Enter Username" name="username" class="form-control my-3 p-4" required>
+                                <button class="mybtn mt-3 mb-4" type="submit" name="response" value="<?php echo $encrypted?>">Reply</button>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-lg-7">
-                                <input type="password" placeholder="Password" name="password" class="form-control my-3 p-4" required>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-lg-7 mt-3 mb-4">
-                                <button class="mybtn" type="submit">Login</button>
-                            </div>
-                        </div>
-                        <p>Don't have an account?<a href="register_form.php"> Register Here!</a></p>
-                </div>
-            </div>
-            </form>
-        </div>
-        </div>
-        </div>
 
-    </section>
-    <?php require_once("includes/footer.php"); ?>
 </body>
-
 </html>

@@ -19,7 +19,6 @@
 
     <title>Register Form</title>
 </head>
-
 <body>
 
     <?php
