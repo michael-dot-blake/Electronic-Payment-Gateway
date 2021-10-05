@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +22,11 @@
 
 <body>
     <?php
+    session_start();
     require_once("includes/header2.php");
+    if (isset($_SESSION['username'])) {
+        header('Location: home.php');
+    }
     ?>
 
     <div class="container my-4">
