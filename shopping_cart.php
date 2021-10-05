@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -26,16 +26,18 @@
     session_start();
     require_once("includes/header.php");
     require_once("database/DBContrl.php");
-    $db_new = new DBController();
+    require_once("database/Products.php");
+    
+    //Creates 
+    $database = new DBController("shoppingcart", "ProductsTB");
     ?>
-    <?php require_once("includes/footer.php"); ?>
+    <!--Create Container -->
+<div class="container">
+    <!-- Create Row, Text will be centered -->
+    <div class="row text-center py-4">
+    <?php
+    ?>
+    </div>
+</div>
 </body>
-
-
-
-
-
-
-
-
 </html>
