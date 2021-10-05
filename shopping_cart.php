@@ -39,8 +39,12 @@
 </head>
 
 <body>
+   
+<?php
+    require_once("includes/header.php");
+?>
     <h1>Shopping Cart</h1>
-    <FORM ACTION="http://www.rebol.com/cgi-bin/test-cgi.cgi">
+    <form action="order_details.php" method="post">
         <table>
             <tr>
                 <th>Products</th>
@@ -77,7 +81,7 @@
                 <th></th>
                 <th>Total</th>
                 <th>
-                    <p id="Quantity">0</p><input id="totalQuantity" name="total" type="hidden" />
+                    <p id="Quantity">0</p><input id="totalQuantity" name="totalQuantity" type="hidden" />
                 </th>
                 <th>
                     <p id="Price">0</p><input id="totalPrice" name="totalPrice" type="hidden" />
@@ -90,7 +94,7 @@
                 <td><button type="submit">Submit</button></td>
             </tr>
         </table><br /><br />
-    </FORM>
+    </form>
     <script type="text/javascript">
         function calcSubTotal(productName) {
 
@@ -194,7 +198,10 @@ pageInit();
 </script>
 
         
-    
+<?php
+    require_once("includes/footer.php");
+?>
+  
 </body>
 
 </html>
