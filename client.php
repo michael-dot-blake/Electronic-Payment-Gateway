@@ -21,21 +21,35 @@
     <?php
 require_once('includes/header.php');
 include('des.php');
+session_start();
     ?>
 
     <?php
-    $key = "abcdefgh";
-    $message = "This_is_our_session_key";
-    $seshKey = php_des_encryption($key, $message);
-    
-    if(isset($_POST['response'])) {
-        $ciphertext = $_POST['response'];
-        echo("<p>Encrypted text: " . $ciphertext . "</p>");
-        $decrypt = php_des_decryption($seshKey, $ciphertext);
-        echo("<p>Session Key is: " . $seshKey . "</p>");
-        echo("<p>Decrypted text: " . $decrypt . "</p>");
+    if(isset($_SESSION['username'])) {
+        $key = "abcdefgh";
+        $message = "This_is_our_session_key";
+        $seshKey = php_des_encryption($key, $message);
+        
+        if(isset($_POST['response'])) {
+            $ciphertext = $_POST['response'];
+            echo("<p>Encrypted text: " . $ciphertext . "</p>");
+            $decrypt = php_des_decryption($seshKey, $ciphertext);
+            echo("<p>Session Key is: " . $seshKey . "</p>");
+            echo("<p>Decrypted text: " . $decrypt . "</p>");
+        }
+        
     }
+
+    else {
+        echo("<p>Please Login in order to generate a session key</p>");
+        header('Location: login_form.php');
+        exit();
+    }
+
+
+   
     ?>
+
 
 
 <section class="Form mb-5">
