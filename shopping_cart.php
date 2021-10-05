@@ -100,7 +100,7 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td><input id="ccNumber" type="text" placeholder="Enter your credit card no." name="ccNumber" required></button></td>
+                    <td><input id="ccNumber" type="number" placeholder="Enter your credit card no." name="ccNumber" required></button></td>
                     <td><input id="UpdateBtn" class="btn btn-success" type="button" onclick="updateCart();" value="Update"></button></td>
                     <td><button type="submit" class="btn btn-primary">Submit</button></td>
                 </tr>
