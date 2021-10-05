@@ -18,7 +18,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <title>Register Form</title>
+
+    <!-- Simple form validation for password -->
+    <script>
+        function validateForm() {
+            let x = document.forms["regi"]["password"].value;
+            let y = document.forms["regi"]["passwordRepeat"].value;
+            if (x != y) {
+                alert("Your Password does not match!");
+                return false;
+            }
+        }
+    </script>
+
 </head>
+
 <body>
 
     <?php
@@ -31,7 +45,7 @@
                 <div class="col-lg-7 mt-4">
                     <h1>SEC Register Form</h1><br>
                     <h3>Please Register down below</h3>
-                    <form action="register_action.php" method="post">
+                    <form name="regi" action="register_action.php" onsubmit="return validateForm()" method="post">
                         <div class="form-row">
                             <div class="col-lg-7">
                                 <input type="text" placeholder="Enter Username" name="username" class="form-control my-3 p-4" required>
