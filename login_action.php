@@ -28,7 +28,7 @@ session_start();
 			if(trim($credentials[0]) == $entered_username){
 				//verify the password
 				if(password_verify($entered_password, trim($credentials[1]))) {
-				$_SESSION['username'] = $entered_username;
+				$_SESSION['username'] = trim($credentials[0]);
 				$login = 1;
 				break;
 				}
@@ -38,6 +38,6 @@ session_start();
 		if($login == 0){
             header('Location: login_form.php');
 		}else{
-            header('Location: shopping_cart.php');
+            header('Location: home.php');
 		} 
 	}
