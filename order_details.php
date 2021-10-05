@@ -26,13 +26,18 @@
          } 
         th  {    background-color: #4CAF50;
                             color: white;
-        }
-                            
+        }                 
         </style>
                        
     </head>
-        <body>
-            <h1>Received Form (What the customer submitted)</h1>
+        
+    <body>
+
+    <?php
+    require_once("includes/header.php");
+    ?>
+
+            <h1>Customer Order Form</h1>
             <table>  
                 <tr>    
                     <th>Products</th>    
@@ -61,5 +66,11 @@
                     <th><?php echo $_POST["totalPrice"]; ?></th>  
                 </tr>
             </table>
+
+
+     <?php
+    require_once("includes/footer.php");
+    ?>
+
     </body>
 </html>

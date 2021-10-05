@@ -53,7 +53,7 @@
                 <th>Subtotal</th>
             </tr>
             <tr>
-                <td>Apples<input type="hidden" name="ProductA" id="ProductA" value="ProductA" /></td>
+                <td>Apples<input type="hidden" name="ProductA" id="ProductA" value="Apples" /></td>
                 <td>$10<input type="hidden" name="ProductAprice" id="ProductAprice" value="10" /></td>
                 <td><input id="ProductAquantity" name="ProductAquantity" type="number" value="0" min="0" max="10" /></td>
                 <td><input id="RemoveProductA" type="button" onclick="removeProduct();" value="Remove"></td>                <td>
@@ -61,7 +61,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Oranges<input type="hidden" name="ProductB" id="ProductB" value="ProductB" /></td>
+                <td>Oranges<input type="hidden" name="ProductB" id="ProductB" value="Oranges" /></td>
                 <td>$15<input type="hidden" name="ProductBprice" id="ProductBprice" value="15" /></td>
                 <td><input id="ProductBquantity" name="ProductBquantity" type="number" value="0" min="0" max="10" /></td>
                 <td><input id="RemoveProductB" type="button" onclick="removeProduct();" value="Remove"></td>                <td>
@@ -69,7 +69,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Bananas<input type="hidden" name="ProductC" id="ProductC" value="ProductC" /></td>
+                <td>Bananas<input type="hidden" name="ProductC" id="ProductC" value="Bananas" /></td>
                 <td>$20<input type="hidden" name="ProductCprice" id="ProductCprice" value="20" /></td>
                 <td><input id="ProductCquantity" name="ProductCquantity" type="number" value="0" min="0" max="10" /></td>
                 <td><input id="RemoveProductC" type="button" onclick="removeProduct();" value="Remove"></td>
@@ -90,6 +90,7 @@
             <tr>
                 <td></td>
                 <td></td>
+                <td><input id="ccNumber" type="text" placeholder="Enter your credit card no." name="ccNumber" required></button></td>
                 <td><input id="UpdateBtn" type="button" onclick="updateCart();" value="Update"></button></td>
                 <td><button type="submit">Submit</button></td>
             </tr>
@@ -191,6 +192,22 @@
         }
 
     </script>
+
+
+<script src="rsa.js"></script>
+    <script type="text/javascript">
+		function RSA_encryption(element){
+
+			var plaintext = document.getElementById(element).value;
+			var public_key = "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzdxaei6bt/xIAhYsdFdW62CGTpRX+GXoZkzqvbf5oOxw4wKENjFX7LsqZXxdFfoRxEwH90zZHLHgsNFzXe3JqiRabIDcNZmKS2F0A7+Mwrx6K2fZ5b7E2fSLFbC7FsvL22mN0KNAp35tdADpl4lKqNFuF7NT22ZBp/X3ncod8cDvMb9tl0hiQ1hJv0H8My/31w+F+Cdat/9Ja5d1ztOOYIx1mZ2FD2m2M33/BgGY/BusUKqSk9W91Eh99+tHS5oTvE8CI8g7pvhQteqmVgBbJOa73eQhZfOQJ0aWQ5m2i0NUPcmwvGDzURXTKW+72UKDz671bE7YAch2H+U7UQeawwIDAQAB-----END PUBLIC KEY-----";
+			// Encrypt with the public key...
+			var encrypt = new JSEncrypt();
+			encrypt.setPublicKey(public_key);
+			var encrypted = encrypt.encrypt(plaintext);
+		  
+			document.getElementById(element).value = encrypted;	
+		}
+	</script>
 
   
 <script type="text/javascript">
