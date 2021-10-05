@@ -23,7 +23,11 @@
 <body>
     <?php
     require_once("includes/header.php");
-
+    session_start();
+    if (isset($_SESSION['username'])) {
+        header('Location: home.php');
+        exit();
+    }
     ?>
 
     <section class="Form mb-5 pb-4">
