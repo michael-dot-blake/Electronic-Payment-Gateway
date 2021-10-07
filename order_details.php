@@ -36,35 +36,28 @@
     <?php
     require_once("includes/header.php");
     include('rsa.php');
+    error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+    session_start();
     ?>
 
 
     <?php
 
+   
+
     $ccNumber = $_POST['ccNumber'];
     $quantity = $_POST['totalQuantity'];
     $price = $_POST['totalPrice'];
 
-
-
-        //OpenSSL not accepting the public.key provided as a viable candidate for php encryption
-
-    // $publicKey = get_rsa_publickey('public.key');
-
-    // $cc_crypt = rsa_encryption($ccNumber, $publicKey);
-    // $quantity_crypt = rsa_encryption($quantity, $publicKey);
-    // $price_crypt = rsa_encryption($price, $publicKey);
-    
-
-
         $file = fopen("database/orders.txt", "a");
         //insert this user into the orders.txt file
-        fwrite($file, $ccNumber . "," . $quantity . "," . $price ."\n");
+        fwrite($file, $_SESSION['username'] . "," . $ccNumber . "," . $quantity . "," . $price ."\n");
         //close the "$file"
         fclose($file);
 
-    
-
+        $privateKey = get_rsa_privatekey('private.key');
+        $decrypted_quantity =  rsa_decryption($quantity, $privateKey);
+        $decrypted_price = rsa_decryption($price, $privateKey);
 
     ?>
 
@@ -76,32 +69,30 @@
                     <th>Quantity</th>
                     <th>Subtotal</th>
                     </tr>  <tr>    
-                    <td><?php if(!empty($_POST['ProductA'])) {  echo $_POST["ProductA"]; } ?></td>
-                    <td><?php if(!empty($_POST['ProductAprice'])) {echo $_POST["ProductAprice"]; }?></td>
-                    <td><?php if(!empty($_POST['ProductAquantity'])) {echo $_POST["ProductAquantity"]; }?></td>
-                    <td><?php if(!empty($_POST['ProductAtotal'])) {echo $_POST["ProductAtotal"]; }?></td>  
-                    </tr>  <tr>    
-                    <td><?php if(!empty($_POST['ProductB'])) {  echo $_POST["ProductB"]; } ?></td>
-                    <td><?php if(!empty($_POST['ProductBprice'])) {echo $_POST["ProductBprice"]; }?></td>
-                    <td><?php if(!empty($_POST['ProductBquantity'])) {echo $_POST["ProductBquantity"]; }?></td>
-                    <td><?php if(!empty($_POST['ProductBtotal'])) {echo $_POST["ProductBtotal"]; }?></td>  
+                    <td><?php if(!empty($_POST['ProductA']) && $_POST["ProductAquantity"] > 0) {  echo $_POST["ProductA"]; } ?></td>
+                    <td><?php if(!empty($_POST['ProductAprice']) && $_POST["ProductAquantity"] > 0) {echo $_POST["ProductAprice"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductAquantity']) && $_POST["ProductAquantity"] > 0) {echo $_POST["ProductAquantity"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductAtotal']) && $_POST["ProductAquantity"] > 0) {echo $_POST["ProductAtotal"]; }?></td>  
+                    </tr>  <tr> 
+                    <td><?php if(!empty($_POST['ProductB']) && ($_POST['ProductBquantity']) > 0) {  echo $_POST["ProductB"]; } ?></td>
+                    <td><?php if(!empty($_POST['ProductBprice']) && ($_POST['ProductBquantity']) > 0) {echo $_POST["ProductBprice"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductBquantity']) && ($_POST['ProductBquantity']) > 0) {echo $_POST["ProductBquantity"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductBtotal']) && ($_POST['ProductBquantity']) > 0) {echo $_POST["ProductBtotal"]; }?></td>  
                     </tr>  <tr>
-                    <td><?php if(!empty($_POST['ProductC'])) {  echo $_POST["ProductC"]; } ?></td>
-                    <td><?php if(!empty($_POST['ProductCprice'])) {echo $_POST["ProductCprice"]; }?></td>
-                    <td><?php if(!empty($_POST['ProductCquantity'])) {echo $_POST["ProductCquantity"]; }?></td>
-                    <td><?php if(!empty($_POST['ProductCtotal'])) {echo $_POST["ProductCtotal"]; }?></td>  
+                    <td><?php if(!empty($_POST['ProductC'])  && $_POST["ProductCquantity"] > 0) {  echo $_POST["ProductC"]; } ?></td>
+                    <td><?php if(!empty($_POST['ProductCprice']) && $_POST["ProductCquantity"] > 0) {echo $_POST["ProductCprice"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductCquantity']) && $_POST["ProductCquantity"] > 0) {echo $_POST["ProductCquantity"]; }?></td>
+                    <td><?php if(!empty($_POST['ProductCtotal']) && $_POST["ProductCquantity"] > 0) {echo $_POST["ProductCtotal"]; }?></td>  
                     </tr>  <tr>
                     <th></th>    
                     <th>Total</th>
-                    <th><?php if (!empty($_POST["totalQuantity"])) { echo $_POST["totalQuantity"]; }?></th>
-                    <th><?php if (!empty($_POST["totalPrice"])) { echo $_POST["totalPrice"]; }?></th>  
+                    <th><?php if (!empty($_POST["totalQuantity"])) { echo  $decrypted_quantity; }?></th>
+                    <th><?php if (!empty($_POST["totalPrice"])) { echo $decrypted_price; }?></th>
                 </tr>
             </table>
-
 
      <?php
     require_once("includes/footer.php");
     ?>
-
     </body>
 </html>

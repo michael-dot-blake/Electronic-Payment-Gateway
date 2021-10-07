@@ -50,7 +50,7 @@
     ?>
     <div class="container mt-3">
         <h1 class="mb-3">Shopping Cart</h1>
-        <form action="order_details.php" method="post">
+        <form id="shopping_cart" action="order_details.php" method="post" onsubmit="return encryptData();">
             <table>
                 <tr>
                     <th>Products</th>
@@ -100,8 +100,8 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td><input id="ccNumber" type="number" placeholder="Enter your credit card no." name="ccNumber" required></button></td>
-                    <td><input id="UpdateBtn" class="btn btn-success" type="button" onclick="updateCart();" value="Update"></button></td>
+                    <td><input id="ccNumber" type="text" placeholder="Enter your credit card no." name="ccNumber" value="" required></input></td>
+                    <td><input id="UpdateBtn" class="btn btn-success" type="button" onclick="updateCart();" value="Update"></input></td>
                     <td><button type="submit" class="btn btn-primary">Submit</button></td>
                 </tr>
             </table><br /><br />
@@ -168,7 +168,7 @@
             document.getElementById("totalPrice").value = total;
         }
 
-        function removeProduct(productName) {
+        function removeProduct() {
             $(this).closest("tr").remove();
             updateCart();
 
@@ -187,23 +187,37 @@
             updatebtn.addEventListener('click', updateCart, false);
 
         }
-    </script>
 
-
-    <script src="rsa.js"></script>
-    <script type="text/javascript">
-        function RSA_encryption(element) {
-
-            var plaintext = document.getElementById(element).value;
-            var public_key = "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzdxaei6bt/xIAhYsdFdW62CGTpRX+GXoZkzqvbf5oOxw4wKENjFX7LsqZXxdFfoRxEwH90zZHLHgsNFzXe3JqiRabIDcNZmKS2F0A7+Mwrx6K2fZ5b7E2fSLFbC7FsvL22mN0KNAp35tdADpl4lKqNFuF7NT22ZBp/X3ncod8cDvMb9tl0hiQ1hJv0H8My/31w+F+Cdat/9Ja5d1ztOOYIx1mZ2FD2m2M33/BgGY/BusUKqSk9W91Eh99+tHS5oTvE8CI8g7pvhQteqmVgBbJOa73eQhZfOQJ0aWQ5m2i0NUPcmwvGDzURXTKW+72UKDz671bE7YAch2H+U7UQeawwIDAQAB-----END PUBLIC KEY-----";
-            // Encrypt with the public key...
-            var encrypt = new JSEncrypt();
-            encrypt.setPublicKey(public_key);
-            var encrypted = encrypt.encrypt(plaintext);
-
-            document.getElementById(element).value = encrypted;
+        function encryptData() {
+            RSA_encryption("ccNumber");
+            RSA_encryption("totalQuantity");
+            RSA_encryption("totalPrice");
         }
+
+        var myform = document.getElementById('shopping_cart');
+        myform.onsubmit = function() {
+        updateCart();
+        encryptData();
+        myform.submit();
+        };
+
     </script>
+
+
+<script src="rsa.js"></script>
+    <script type="text/javascript">
+		function RSA_encryption(inputId){
+
+			var plaintext = document.getElementById(inputId).value;
+			var pubilc_key = "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzdxaei6bt/xIAhYsdFdW62CGTpRX+GXoZkzqvbf5oOxw4wKENjFX7LsqZXxdFfoRxEwH90zZHLHgsNFzXe3JqiRabIDcNZmKS2F0A7+Mwrx6K2fZ5b7E2fSLFbC7FsvL22mN0KNAp35tdADpl4lKqNFuF7NT22ZBp/X3ncod8cDvMb9tl0hiQ1hJv0H8My/31w+F+Cdat/9Ja5d1ztOOYIx1mZ2FD2m2M33/BgGY/BusUKqSk9W91Eh99+tHS5oTvE8CI8g7pvhQteqmVgBbJOa73eQhZfOQJ0aWQ5m2i0NUPcmwvGDzURXTKW+72UKDz671bE7YAch2H+U7UQeawwIDAQAB-----END PUBLIC KEY-----";
+			// Encrypt with the public key...
+			var encrypt = new JSEncrypt();
+			encrypt.setPublicKey(pubilc_key);
+			var encrypted = encrypt.encrypt(plaintext);
+		  
+			document.getElementById(inputId).value = encrypted;	
+		}
+	</script>
 
 
     <script type="text/javascript">
